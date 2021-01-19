@@ -1,8 +1,7 @@
 import React from "react";
-import Header from "../components/Header";
-import SearchContainer from "../components/SearchContainer";
 import Description from "../components/Description";
-import API from "../utils/API";
+import Header from "../components/Header";
+import SavedBooks from "../components/SavedBooks";
 
 const Saved = () => {
     return(
@@ -10,7 +9,7 @@ const Saved = () => {
         <Header />
         <Description />
         <h1>Saved Books</h1>
-        <SearchContainer />
+        <SavedBooks />
     </div>   
 
     )

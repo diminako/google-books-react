@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import Description from "../components/Description";
 import Header from "../components/Header";
 import SearchContainer from "../components/SearchContainer";
+import Discovered from "../components/Discovered";
+
 import API from "../utils/API";
 
 const Home = () => {
@@ -12,7 +14,7 @@ const Home = () => {
     }, []);
 
     const loadBooks = () => {
-      // Add code here to get all books from the database and store them using setBooks
+
      const getBooksList = async () => {
           const results = await API.getBooks();
           setBooks( results.data.items )
@@ -20,28 +22,24 @@ const Home = () => {
       getBooksList()
     }
 
-    //   await API.getBooks()
-    //   .then(res => {
-        
-    //   })
-    //   .catch(err => console.log(err));
-    
     const handleFormSubmit = event => {
-      // When the form is submitted, prevent its default behavior, get recipes update the recipes state
       event.preventDefault();
-      API.getBooks(loadBooks)
+      API.getBook(event.target.searchedBook.value.split(" ").join(""))
         .then(res => {
-          console.log(res.data)
-          setBooks(res.data)
+          console.log(res.data.items)
+          setBooks(res.data.items)
         })
         .catch(err => console.log(err));
     };
+
     return(
-    <div className="home">
-        {console.log(books)}
+        <div className="home">
         <Header />
         <Description />
         <SearchContainer 
+        onClick={handleFormSubmit}
+        books={books}/>
+        <Discovered 
         books={books}/>
     </div>   
     )

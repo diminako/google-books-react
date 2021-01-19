@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Search from "../Search"
 
-const SearchContainer = ({books}) => {
+const SearchContainer = ({books, onClick}) => {
     return (
         <>
             <div className="searchContainer">
               <Search 
-              books={books}/>
+              books={books}
+              onClick={onClick}/>
             </div>
         </>
     )
